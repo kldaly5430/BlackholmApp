@@ -1,0 +1,107 @@
+body {
+    background-image: url("./Assets/Images/pexels-eva-elijas-7599547.jpg");
+    background-size: cover;
+    align-items: center;
+}
+
+#weapon {
+    margin-top: 20px;
+}
+
+#primaryFire, #secondaryFire {
+    height: 50px;
+    margin: 5px 5px 5px 5px;
+    /* padding: 5px; */
+}
+
+#reload, #reloadSecondary, #weaponSelect, #secondaryWeaponSelect, #ammoAmount, #secondaryAmmoAmount {
+    margin: 5px;
+    padding: 5px;
+}
+
+#revolver, #revolver2 {
+    position: relative;
+    width: 130px;
+    height: 130px;
+}
+
+.ammo_Image {
+    width: 35px;
+    height: 35px;
+}
+
+#bullet_1 {
+    position: absolute;
+    left: 59px;
+    top: 29px;
+}
+
+#bullet_2 {
+    position: absolute;
+    left: 92px;
+    top: 48px;
+}
+
+#bullet_3 {
+    position: absolute;
+    left: 92px;
+    top: 86px;
+}
+
+#bullet_4 {
+    position: absolute;
+    left: 59px;
+    top: 105px;
+}
+
+#bullet_5 {
+    position: absolute;
+    left: 26px;
+    top: 86px;
+}
+
+#bullet_6 {
+    position: absolute;
+    left: 26px;
+    top: 48px;
+}
+
+#chamber2 {
+    position: relative;
+}
+
+#bullet_21 {
+    position: absolute;
+    left: 47px;
+    top: 9px;
+}
+
+#bullet_22 {
+    position: absolute;
+    left: 80px;
+    top: 28px;
+}
+
+#bullet_23 {
+    position: absolute;
+    left: 80px;
+    top: 66px;
+}
+
+#bullet_24 {
+    position: absolute;
+    left: 47px;
+    top: 85px;
+}
+
+#bullet_25 {
+    position: absolute;
+    left: 14px;
+    top: 66px;
+}
+
+#bullet_26 {
+    position: absolute;
+    left: 14px;
+    top: 28px;
+}

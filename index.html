@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Ammo Tracker</title>
+</head>
+<body>
+    <div class="container-md">
+        <div class="row" id="weapon">
+            <div class="col-9 col-sm-3">
+                <div id="ammo1">
+                    <div class="div" id="chamber">
+                        <img src="./Assets/Images/Revolverchamber.png" id="revolver" alt="bullet chamber">
+                    
+                        <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_1" alt="ammo">
+                        <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_2" alt="ammo">
+                        <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_3" alt="ammo">
+                        <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_4" alt="ammo">
+                        <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_5" alt="ammo">
+                        <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_6" alt="ammo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-3">
+                <div class="row">
+                    <button class="btn btn-danger" id="primaryFire" onclick="RemoveAmmo()">FIRE!</button>
+                    <audio id="gun1"></audio>
+                    <audio id="emptyGun" src="./Assets/Sounds/EmptyClick.mp3" preload="auto"></audio>
+                </div>
+                <div class="row">
+                    <button class="btn btn-info" id="reload" onclick="Reload()">Reload</button>
+                </div>
+            </div>
+            <div class="col-6 offset-1 col-sm-5 offset-sm-1">
+                <div class="row">
+                    <select class="form-select" id="weaponSelect" onchange="SetPrimary(this.value)">
+                        <option value="-1">Select a Weapon</option>
+                        <option value="0">9mm Pistol</option>
+                        <option value="0">Shotgun</option>
+                        <option value="1">Revolver</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <select class="form-select" id="ammoAmount" onchange="SetAmmo(this.value)">
+                        <option value="0" selected>Select Ammo Amount</option>
+                        <option value="6">6</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                    <p id="ammo"></p>
+                    <!-- <p id="bullets"></p> -->
+                </div>
+
+            </div>
+        </div>
+        <div class="row" id="weapon">
+            <div class="col-9 col-sm-3">
+                <div id="ammo2">
+                    <div class="div" id="chamber2">
+                        <img src="./Assets/Images/Revolverchamber.png" id="revolver2" alt="bullet chamber">
+                        <!-- <div class="div"> -->
+                            <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_21" alt="ammo">
+                            <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_22" alt="ammo">
+                            <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_23" alt="ammo">
+                            <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_24" alt="ammo">
+                            <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_25" alt="ammo">
+                            <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_26" alt="ammo">
+                        <!-- </div> -->
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-sm-3">
+                <div class="row">
+                    <button class="btn btn-danger" id="secondaryFire" onclick="RemoveSecondaryAmmo()">FIRE!</button>
+                    <audio id="gun2" preload="auto"></audio>
+                    <audio id="emptyGun" src="./Assets/Sounds/EmptyClick.mp3" preload="auto"></audio>
+                </div>
+                <div class="row">
+                    <button class="btn btn-info" id="reloadSecondary" onclick="ReloadSecondary()">Reload</button>
+                </div>
+            </div>
+            <div class="col-6 offset-1 col-sm-5 offset-sm-1">
+                <div class="row">
+                    <select class="form-select" id="secondaryWeaponSelect" onchange="SetSecondary(this.value)">
+                        <option value="-1">Select a Weapon</option>
+                        <option value="0">9mm Pistol</option>
+                        <option value="0">Shotgun</option>
+                        <option value="1">Revolver</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <select class="form-select" id="secondaryAmmoAmount" onchange="SetSecondaryAmmo(this.value)">
+                        <option value="0" selected>Select Ammo Amount</option>
+                        <option value="6">6</option>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                    <p id="ammo"></p>
+                    <!-- <p id="bullets"></p> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    let primary = document.getElementById('weaponSelect').value;
+    let secondary = document.getElementById('secondaryWeaponSelect').value;
+    let ammo = document.getElementById('ammoAmount');
+    let secondAmmo = document.getElementById('secondaryAmmoAmount');
+
+    let ammoCap = ammo.value;
+    let secondaryCap = secondAmmo.value;
+
+    let ammoLeft = ammoCap;
+    let secondAmmoLeft = secondaryCap;
+    
+
+    function SetPrimary(value) {
+        globalThis.primary = value;
+        // document.getElementById('ammo').innerHTML = globalThis.primary;
+    }
+
+    function SetSecondary(value) {
+        globalThis.secondary = value;
+    }
+    
+
+    function SetAmmo(value) {
+        var images = document.getElementById('ammoAmount');
+       for(var j = 1; j <= images.length-1; j++) {
+           document.getElementById('bullet_'+j).style.visibility = "hidden";
+       }
+        for(var i = 1; i <= value; i++) {
+           document.getElementById('bullet_'+i).style.visibility = "visible";
+       }
+       globalThis.ammo = document.getElementById('ammoAmount');
+       ammoCap = ammo.value;
+       globalThis.ammoLeft = ammoCap;
+    //    document.getElementById('ammo').innerHTML = ammoCap;
+
+    }
+
+    function SetSecondaryAmmo(value) {
+        var images = document.getElementById('secondaryAmmoAmount');
+       for(var j = 1; j <= images.length-1; j++) {
+           document.getElementById('bullet_2'+j).style.visibility = "hidden";
+       }
+       for(var i = 1; i <= value; i++) {
+           document.getElementById('bullet_2'+i).style.visibility = "visible";
+       }
+       globalThis.secondAmmo = document.getElementById('secondaryAmmoAmount');
+       secondaryCap = secondAmmo.value;
+       globalThis.secondAmmoLeft = secondaryCap;
+    //    document.getElementById('ammo').innerHTML = secondaryCap;
+    }
+
+    function RemoveAmmo() {
+        if(globalThis.ammoLeft > 0){
+            bulletNum = 'bullet_' + globalThis.ammoLeft;
+            PlayFiringEffect(globalThis.primary);
+            document.getElementById(bulletNum).style.visibility = "hidden";
+            globalThis.ammoLeft--;
+        } else {
+            PlayFiringEffect("20");
+        }
+    }
+
+    function RemoveSecondaryAmmo() {
+        if(globalThis.secondAmmoLeft > 0){
+            bulletNum = 'bullet_2' + globalThis.secondAmmoLeft;
+            PlayFiringEffect(globalThis.secondary);
+            document.getElementById(bulletNum).style.visibility = "hidden";
+            globalThis.secondAmmoLeft--;
+        } else {
+            PlayFiringEffect("20");
+        }
+    }
+
+    function Reload() {
+        for(var i = 1; i <= ammo.value; i++) {
+           document.getElementById('bullet_'+i).style.visibility = "visible";
+       }
+       PlayReloadEffect(globalThis.primary);
+       ammoCap = ammo.value;
+       globalThis.ammoLeft = ammoCap;
+    }
+
+    function ReloadSecondary() {
+        for(var i = 1; i <= secondAmmo.value; i++) {
+           document.getElementById('bullet_2'+i).style.visibility = "visible";
+       }
+       PlayReloadEffect(globalThis.secondary);
+       secondaryCap = secondAmmo.value;
+       globalThis.secondAmmoLefts = secondaryCap;
+    }
+
+    function PlayFiringEffect(value) {
+        let pistol = new Audio('./Assets/Sounds/Pistol 1.mp3');        
+        let revolver = new Audio('./Assets/Sounds/Revolver 1 shoot.mp3');
+
+        switch(value){
+            case "0": pistol.play();
+                console.log('pistol');
+                break;
+            case "1": revolver.play();
+                break;
+            case "20": empty.play();
+                console.log('empty');
+                break;
+        }
+    }
+
+    function PlayReloadEffect(value) {
+        let pistolReload = new Audio('./Assets/Sounds/Pistol 1 Reload.mp3');
+        let revolverReload = new Audio('./Assets/Sounds/Revolver 1 reload.mp3');
+
+        switch(value){
+            case "0": pistolReload.play();
+                console.log('pistol');
+                break;
+            case "1": revolverReload.play();
+                break;
+        }
+    }
+</script>
