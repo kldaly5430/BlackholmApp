@@ -31,7 +31,6 @@
                 <div class="row">
                     <button class="btn btn-danger" id="primaryFire" onclick="RemoveAmmo()">FIRE!</button>
                     <audio id="gun1"></audio>
-                    <audio id="emptyGun" src="./Assets/Sounds/EmptyClick.mp3" preload="auto"></audio>
                 </div>
                 <div class="row">
                     <button class="btn btn-info" id="reload" onclick="Reload()">Reload</button>
@@ -44,6 +43,10 @@
                         <option value="0">9mm Pistol</option>
                         <option value="0">Shotgun</option>
                         <option value="1">Revolver</option>
+                        <option value="2">Desert Eagle</option>
+                        <option value="3">AK</option>
+                        <option value="4">SMG 1</option>
+                        <option value="5">SMG 2</option>
                     </select>
                 </div>
                 <div class="row">
@@ -56,10 +59,7 @@
                         <option value="2">2</option>
                         <option value="1">1</option>
                     </select>
-                    <p id="ammo"></p>
-                    <!-- <p id="bullets"></p> -->
                 </div>
-
             </div>
         </div>
         <div class="row" id="weapon">
@@ -67,15 +67,12 @@
                 <div id="ammo2">
                     <div class="div" id="chamber2">
                         <img src="./Assets/Images/Revolverchamber.png" id="revolver2" alt="bullet chamber">
-                        <!-- <div class="div"> -->
                             <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_21" alt="ammo">
                             <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_22" alt="ammo">
                             <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_23" alt="ammo">
                             <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_24" alt="ammo">
                             <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_25" alt="ammo">
                             <img src="./Assets/Images/shell.png" class="ammo_Image" id="bullet_26" alt="ammo">
-                        <!-- </div> -->
-                        
                     </div>
                 </div>
             </div>
@@ -96,6 +93,10 @@
                         <option value="0">9mm Pistol</option>
                         <option value="0">Shotgun</option>
                         <option value="1">Revolver</option>
+                        <option value="2">Desert Eagle</option>
+                        <option value="3">AK</option>
+                        <option value="4">SMG 1</option>
+                        <option value="5">SMG 2</option>
                     </select>
                 </div>
                 <div class="row">
@@ -108,10 +109,7 @@
                         <option value="2">2</option>
                         <option value="1">1</option>
                     </select>
-                    <p id="ammo"></p>
-                    <!-- <p id="bullets"></p> -->
                 </div>
-
             </div>
         </div>
     </div>
@@ -133,7 +131,6 @@
 
     function SetPrimary(value) {
         globalThis.primary = value;
-        // document.getElementById('ammo').innerHTML = globalThis.primary;
     }
 
     function SetSecondary(value) {
@@ -152,7 +149,6 @@
        globalThis.ammo = document.getElementById('ammoAmount');
        ammoCap = ammo.value;
        globalThis.ammoLeft = ammoCap;
-    //    document.getElementById('ammo').innerHTML = ammoCap;
 
     }
 
@@ -167,7 +163,6 @@
        globalThis.secondAmmo = document.getElementById('secondaryAmmoAmount');
        secondaryCap = secondAmmo.value;
        globalThis.secondAmmoLeft = secondaryCap;
-    //    document.getElementById('ammo').innerHTML = secondaryCap;
     }
 
     function RemoveAmmo() {
@@ -207,21 +202,32 @@
        }
        PlayReloadEffect(globalThis.secondary);
        secondaryCap = secondAmmo.value;
-       globalThis.secondAmmoLefts = secondaryCap;
+       globalThis.secondAmmoLeft = secondaryCap;
     }
 
     function PlayFiringEffect(value) {
         let pistol = new Audio('./Assets/Sounds/Pistol 1.mp3');        
         let revolver = new Audio('./Assets/Sounds/Revolver 1 shoot.mp3');
+        let eagle = new Audio('./Assets/Sounds/Desert Eagle.mp3');
+        let ak = new Audio('./Assets/Sounds/AK 1.mp3');
+        let smg1 = new Audio('./Assets/Sounds/SMG 1.mp3');
+        let smg2 = new Audio('./Assets/Sounds/SMG 2.mp3');
+        let empty = new Audio('./Assets/Sounds/EmptyClick.mp3');
 
         switch(value){
             case "0": pistol.play();
-                console.log('pistol');
                 break;
             case "1": revolver.play();
                 break;
+            case "2": eagle.play();
+                break;
+            case "3": ak.play();
+                break;
+            case "4": smg1.play();
+                break;
+            case "5": smg2.play()
+                break;
             case "20": empty.play();
-                console.log('empty');
                 break;
         }
     }
@@ -229,12 +235,23 @@
     function PlayReloadEffect(value) {
         let pistolReload = new Audio('./Assets/Sounds/Pistol 1 Reload.mp3');
         let revolverReload = new Audio('./Assets/Sounds/Revolver 1 reload.mp3');
+        let eagleReload = new Audio('./Assets/Sounds/Desert Eagle Reload.mp3');
+        let akReload = new Audio('./Assets/Sounds/AK 1 reload.mp3');
+        let smg1Reload = new Audio('./Assets/Sounds/SMG 1 reload.mp3');
+        let smg2Reload = new Audio('./Assets/Sounds/SMG 2 reload.mp3');
 
         switch(value){
             case "0": pistolReload.play();
-                console.log('pistol');
                 break;
             case "1": revolverReload.play();
+                break;
+            case "2": eagleReload.play();
+                break;
+            case "3": akReload.play();
+                break;
+            case "4": smg1Reload.play();
+                break;
+            case "5": smg2Reload.play();
                 break;
         }
     }
