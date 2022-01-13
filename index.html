@@ -41,12 +41,13 @@
                     <select class="form-select" id="weaponSelect" onchange="SetPrimary(this.value)">
                         <option value="-1">Select a Weapon</option>
                         <option value="0">9mm Pistol</option>
-                        <option value="0">Shotgun</option>
+                        <option value="7">Shotgun</option>
                         <option value="1">Revolver</option>
                         <option value="2">Desert Eagle</option>
                         <option value="3">AK</option>
                         <option value="4">SMG 1</option>
                         <option value="5">SMG 2</option>
+                        <option value="6">Sniper</option>
                     </select>
                 </div>
                 <div class="row">
@@ -91,12 +92,13 @@
                     <select class="form-select" id="secondaryWeaponSelect" onchange="SetSecondary(this.value)">
                         <option value="-1">Select a Weapon</option>
                         <option value="0">9mm Pistol</option>
-                        <option value="0">Shotgun</option>
+                        <option value="7">Shotgun</option>
                         <option value="1">Revolver</option>
                         <option value="2">Desert Eagle</option>
                         <option value="3">AK</option>
                         <option value="4">SMG 1</option>
                         <option value="5">SMG 2</option>
+                        <option value="6">Sniper</option>
                     </select>
                 </div>
                 <div class="row">
@@ -212,6 +214,8 @@
         let ak = new Audio('./Assets/Sounds/AK 1.mp3');
         let smg1 = new Audio('./Assets/Sounds/SMG 1.mp3');
         let smg2 = new Audio('./Assets/Sounds/SMG 2.mp3');
+        let sniper = new Audio('./Assets/Sounds/sniper.wav');
+        let shotgun = new Audio('./Assets/Sounds/shotgun.wav');
         let empty = new Audio('./Assets/Sounds/EmptyClick.mp3');
 
         switch(value){
@@ -227,6 +231,10 @@
                 break;
             case "5": smg2.play()
                 break;
+            case "6": sniper.play();
+                break;
+            case "7": shotgun.play();
+                break;
             case "20": empty.play();
                 break;
         }
@@ -239,6 +247,7 @@
         let akReload = new Audio('./Assets/Sounds/AK 1 reload.mp3');
         let smg1Reload = new Audio('./Assets/Sounds/SMG 1 reload.mp3');
         let smg2Reload = new Audio('./Assets/Sounds/SMG 2 reload.mp3');
+        let shotgunReload = new Audio('./Assets/Sounds/shotgunReload.wav');
 
         switch(value){
             case "0": pistolReload.play();
@@ -252,6 +261,10 @@
             case "4": smg1Reload.play();
                 break;
             case "5": smg2Reload.play();
+                break;
+            case "6": shotgunReload.play();
+                break;
+            case "7": shotgunReload.play();
                 break;
         }
     }
