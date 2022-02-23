@@ -29,29 +29,30 @@
             </div>
             <div class="col-4 col-sm-3">
                 <div class="row">
-                    <button class="btn btn-danger" id="primaryFire" onclick="RemoveAmmo()">FIRE!</button>
+                    <button class="btn btn-danger" id="primaryFire" onclick="RemoveAmmo(0)">FIRE!</button>
                     <audio id="gun1"></audio>
                 </div>
                 <div class="row">
-                    <button class="btn btn-info" id="reload" onclick="Reload()">Reload</button>
+                    <button class="btn btn-info" id="reload" onclick="Reload(0)">Reload</button>
                 </div>
             </div>
             <div class="col-6 offset-1 col-sm-5 offset-sm-1">
                 <div class="row">
-                    <select class="form-select" id="weaponSelect" onchange="SetPrimary(this.value)">
+                    <select class="form-select" id="weaponSelect" onchange="SetWeapon(this.value, 0)">
                         <option value="-1">Select a Weapon</option>
                         <option value="0">9mm Pistol</option>
                         <option value="7">Shotgun</option>
                         <option value="1">Revolver</option>
                         <option value="2">Desert Eagle</option>
                         <option value="3">AK</option>
+                        <option value="8">Assault Rifle</option>
                         <option value="4">SMG 1</option>
                         <option value="5">SMG 2</option>
                         <option value="6">Sniper</option>
                     </select>
                 </div>
                 <div class="row">
-                    <select class="form-select" id="ammoAmount" onchange="SetAmmo(this.value)">
+                    <select class="form-select" id="ammoAmount" onchange="SetAmmo(this.value, 0)">
                         <option value="0" selected>Select Ammo Amount</option>
                         <option value="6">6</option>
                         <option value="5">5</option>
@@ -79,30 +80,31 @@
             </div>
             <div class="col-4 col-sm-3">
                 <div class="row">
-                    <button class="btn btn-danger" id="secondaryFire" onclick="RemoveSecondaryAmmo()">FIRE!</button>
+                    <button class="btn btn-danger" id="secondaryFire" onclick="RemoveAmmo(1)">FIRE!</button>
                     <audio id="gun2" preload="auto"></audio>
                     <audio id="emptyGun" src="./Assets/Sounds/EmptyClick.mp3" preload="auto"></audio>
                 </div>
                 <div class="row">
-                    <button class="btn btn-info" id="reloadSecondary" onclick="ReloadSecondary()">Reload</button>
+                    <button class="btn btn-info" id="reloadSecondary" onclick="Reload(1)">Reload</button>
                 </div>
             </div>
             <div class="col-6 offset-1 col-sm-5 offset-sm-1">
                 <div class="row">
-                    <select class="form-select" id="secondaryWeaponSelect" onchange="SetSecondary(this.value)">
+                    <select class="form-select" id="secondaryWeaponSelect" onchange="SetWeapon(this.value, 1)">
                         <option value="-1">Select a Weapon</option>
                         <option value="0">9mm Pistol</option>
                         <option value="7">Shotgun</option>
                         <option value="1">Revolver</option>
                         <option value="2">Desert Eagle</option>
                         <option value="3">AK</option>
+                        <option value="8">Assault Rifle</option>
                         <option value="4">SMG 1</option>
                         <option value="5">SMG 2</option>
                         <option value="6">Sniper</option>
                     </select>
                 </div>
                 <div class="row">
-                    <select class="form-select" id="secondaryAmmoAmount" onchange="SetSecondaryAmmo(this.value)">
+                    <select class="form-select" id="secondaryAmmoAmount" onchange="SetAmmo(this.value, 1)">
                         <option value="0" selected>Select Ammo Amount</option>
                         <option value="6">6</option>
                         <option value="5">5</option>
@@ -131,91 +133,106 @@
     let secondAmmoLeft = secondaryCap;
     
 
-    function SetPrimary(value) {
-        globalThis.primary = value;
-    }
-
-    function SetSecondary(value) {
-        globalThis.secondary = value;
-    }
-    
-
-    function SetAmmo(value) {
-        var images = document.getElementById('ammoAmount');
-       for(var j = 1; j <= images.length-1; j++) {
-           document.getElementById('bullet_'+j).style.visibility = "hidden";
-       }
-        for(var i = 1; i <= value; i++) {
-           document.getElementById('bullet_'+i).style.visibility = "visible";
-       }
-       globalThis.ammo = document.getElementById('ammoAmount');
-       ammoCap = ammo.value;
-       globalThis.ammoLeft = ammoCap;
-
-    }
-
-    function SetSecondaryAmmo(value) {
-        var images = document.getElementById('secondaryAmmoAmount');
-       for(var j = 1; j <= images.length-1; j++) {
-           document.getElementById('bullet_2'+j).style.visibility = "hidden";
-       }
-       for(var i = 1; i <= value; i++) {
-           document.getElementById('bullet_2'+i).style.visibility = "visible";
-       }
-       globalThis.secondAmmo = document.getElementById('secondaryAmmoAmount');
-       secondaryCap = secondAmmo.value;
-       globalThis.secondAmmoLeft = secondaryCap;
-    }
-
-    function RemoveAmmo() {
-        if(globalThis.ammoLeft > 0){
-            bulletNum = 'bullet_' + globalThis.ammoLeft;
-            PlayFiringEffect(globalThis.primary);
-            document.getElementById(bulletNum).style.visibility = "hidden";
-            globalThis.ammoLeft--;
-        } else {
-            PlayFiringEffect("20");
+    function SetWeapon(value, position) {
+        if(position == 0)
+        {
+          globalThis.primary = value;  
         }
+        else
+        {
+           globalThis.secondary = value; 
+        }
+    }   
+
+    function SetAmmo(value, secondaryWeapon) {
+       if(secondaryWeapon == 0)
+       {
+            var images = document.getElementById('ammoAmount');
+            for(var j = 1; j <= images.length-1; j++) {
+                document.getElementById('bullet_'+j).style.visibility = "hidden";
+            }
+                for(var i = 1; i <= value; i++) {
+                document.getElementById('bullet_'+i).style.visibility = "visible";
+            }
+       
+            globalThis.ammo = document.getElementById('ammoAmount');
+            ammoCap = ammo.value;
+            globalThis.ammoLeft = ammoCap;
+       }
+       else
+       {
+            var images = document.getElementById('secondaryAmmoAmount');
+            for(var j = 1; j <= images.length-1; j++) {
+                document.getElementById('bullet_2'+j).style.visibility = "hidden";
+            }
+            for(var i = 1; i <= value; i++) {
+                document.getElementById('bullet_2'+i).style.visibility = "visible";
+            }
+            globalThis.secondAmmo = document.getElementById('secondaryAmmoAmount');
+            secondaryCap = secondAmmo.value;
+            globalThis.secondAmmoLeft = secondaryCap;
+       }
     }
 
-    function RemoveSecondaryAmmo() {
-        if(globalThis.secondAmmoLeft > 0){
+    function RemoveAmmo(secondaryWeapon) {
+        if(secondaryWeapon == 0)
+        {
+            if(globalThis.ammoLeft > 0){
+                bulletNum = 'bullet_' + globalThis.ammoLeft;
+                PlayFiringEffect(globalThis.primary);
+                document.getElementById(bulletNum).style.visibility = "hidden";
+                globalThis.ammoLeft--;
+            } else {
+                PlayFiringEffect("20");
+            }
+        }
+        else
+        {
+            if(globalThis.secondAmmoLeft > 0){
             bulletNum = 'bullet_2' + globalThis.secondAmmoLeft;
             PlayFiringEffect(globalThis.secondary);
             document.getElementById(bulletNum).style.visibility = "hidden";
             globalThis.secondAmmoLeft--;
-        } else {
-            PlayFiringEffect("20");
+            } else {
+                PlayFiringEffect("20");
+            }
         }
     }
 
-    function Reload() {
-        for(var i = 1; i <= ammo.value; i++) {
-           document.getElementById('bullet_'+i).style.visibility = "visible";
-       }
-       PlayReloadEffect(globalThis.primary);
-       ammoCap = ammo.value;
-       globalThis.ammoLeft = ammoCap;
-    }
-
-    function ReloadSecondary() {
-        for(var i = 1; i <= secondAmmo.value; i++) {
-           document.getElementById('bullet_2'+i).style.visibility = "visible";
-       }
-       PlayReloadEffect(globalThis.secondary);
-       secondaryCap = secondAmmo.value;
-       globalThis.secondAmmoLeft = secondaryCap;
+    const timer = ms => new Promise(res => setTimeout(res, ms))
+    async function Reload(secondaryWeapon) {
+        if(secondaryWeapon == 0)
+        {
+            ammoCap = ammo.value;
+            globalThis.ammoLeft = ammoCap;
+            PlayReloadEffect(globalThis.primary);
+            for(var i = 1; i <= ammo.value; i++) {
+                document.getElementById('bullet_'+i).style.visibility = "visible";
+                await timer(300);
+            }
+        }
+        else
+        {
+            secondaryCap = secondAmmo.value;
+            globalThis.secondAmmoLeft = secondaryCap;
+            PlayReloadEffect(globalThis.secondary);
+            for(var i = 1; i <= secondAmmo.value; i++) {
+                document.getElementById('bullet_2'+i).style.visibility = "visible";
+                await timer(500);
+            }
+        }
     }
 
     function PlayFiringEffect(value) {
-        let pistol = new Audio('./Assets/Sounds/Pistol 1.mp3');        
-        let revolver = new Audio('./Assets/Sounds/Revolver 1 shoot.mp3');
-        let eagle = new Audio('./Assets/Sounds/Desert Eagle.mp3');
-        let ak = new Audio('./Assets/Sounds/AK 1.mp3');
-        let smg1 = new Audio('./Assets/Sounds/SMG 1.mp3');
-        let smg2 = new Audio('./Assets/Sounds/SMG 2.mp3');
-        let sniper = new Audio('./Assets/Sounds/sniper.wav');
-        let shotgun = new Audio('./Assets/Sounds/shotgun.wav');
+        let pistol = new Audio('./Assets/Sounds/Pistol_1/FINAL_Pistol_1.mp3');        
+        let revolver = new Audio('./Assets/Sounds/Revolver 1/FINAL Revolver 1 shoot.mp3');
+        let eagle = new Audio('./Assets/Sounds/Desert Eagle/FINAL Desert Eagle.mp3');
+        let ak = new Audio('./Assets/Sounds/AK/FINAL AK 1.mp3');
+        let assaultRifle = new Audio('./Assets/Sounds/Assault Rifle/FINAL Assault Rifle 1.mp3');
+        let smg1 = new Audio('./Assets/Sounds/SMG 1/FINAL SMG 1.mp3');
+        let smg2 = new Audio('./Assets/Sounds/SMG 2/FINAL SMG 2.mp3');
+        let sniper = new Audio('./Assets/Sounds/Sniper 1/FINAL Sniper 1.mp3');
+        let shotgun = new Audio('./Assets/Sounds/Shotgun 1/FINAL Shotgun 1.mp3');
         let empty = new Audio('./Assets/Sounds/EmptyClick.mp3');
 
         switch(value){
@@ -235,19 +252,22 @@
                 break;
             case "7": shotgun.play();
                 break;
+            case "8": assaultRifle.play();
+                break;
             case "20": empty.play();
                 break;
         }
     }
 
     function PlayReloadEffect(value) {
-        let pistolReload = new Audio('./Assets/Sounds/Pistol 1 Reload.mp3');
-        let revolverReload = new Audio('./Assets/Sounds/Revolver 1 reload.mp3');
-        let eagleReload = new Audio('./Assets/Sounds/Desert Eagle Reload.mp3');
-        let akReload = new Audio('./Assets/Sounds/AK 1 reload.mp3');
-        let smg1Reload = new Audio('./Assets/Sounds/SMG 1 reload.mp3');
-        let smg2Reload = new Audio('./Assets/Sounds/SMG 2 reload.mp3');
-        let shotgunReload = new Audio('./Assets/Sounds/shotgunReload.wav');
+        let pistolReload = new Audio('./Assets/Sounds/Pistol_1/FINAL_Pistol_1_reload.mp3');
+        let revolverReload = new Audio('Assets/Sounds/Revolver 1/FINAL Revolver 1 reload.mp3');
+        let eagleReload = new Audio('./Assets/Sounds/Desert Eagle/FINAL Desert Eagle Reload.mp3');
+        let akReload = new Audio('./Assets/Sounds/AK/FINAL AK 1 reload.mp3');
+        let assaultRifleReload = new Audio('./Assets/Sounds/Assault Rifle/FINAL Assault Rifle Reload.mp3');
+        let smg1Reload = new Audio('./Assets/Sounds/SMG 1/FINAL SMG 1 reload.mp3');
+        let smg2Reload = new Audio('./Assets/Sounds/SMG 2/FINAL SMG 2 reload.mp3');
+        let shotgunReload = new Audio('./Assets/Sounds/Shotgun 1/FINAL Shotgun 1 Reload.mp3');
 
         switch(value){
             case "0": pistolReload.play();
@@ -266,6 +286,7 @@
                 break;
             case "7": shotgunReload.play();
                 break;
+            case "8": assaultRifleReload.play();
         }
     }
 </script>
