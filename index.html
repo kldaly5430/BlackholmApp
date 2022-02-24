@@ -42,10 +42,11 @@
                         <option value="-1">Select a Weapon</option>
                         <option value="0">9mm Pistol</option>
                         <option value="7">Shotgun</option>
+                        <option value="8">Double Barrel Shotgun</option>
                         <option value="1">Revolver</option>
                         <option value="2">Desert Eagle</option>
                         <option value="3">AK</option>
-                        <option value="8">Assault Rifle</option>
+                        <option value="9">Assault Rifle</option>
                         <option value="4">SMG 1</option>
                         <option value="5">SMG 2</option>
                         <option value="6">Sniper</option>
@@ -94,10 +95,11 @@
                         <option value="-1">Select a Weapon</option>
                         <option value="0">9mm Pistol</option>
                         <option value="7">Shotgun</option>
+                        <option value="8">Double Barrel Shotgun</option>
                         <option value="1">Revolver</option>
                         <option value="2">Desert Eagle</option>
                         <option value="3">AK</option>
-                        <option value="8">Assault Rifle</option>
+                        <option value="9">Assault Rifle</option>
                         <option value="4">SMG 1</option>
                         <option value="5">SMG 2</option>
                         <option value="6">Sniper</option>
@@ -233,6 +235,7 @@
         let smg2 = new Audio('./Assets/Sounds/SMG 2/FINAL SMG 2.mp3');
         let sniper = new Audio('./Assets/Sounds/Sniper 1/FINAL Sniper 1.mp3');
         let shotgun = new Audio('./Assets/Sounds/Shotgun 1/FINAL Shotgun 1.mp3');
+        let dblShotgun = new Audio('./Assets/Sounds/Double Shotgun/FINAL Double Shotgun.mp3')
         let empty = new Audio('./Assets/Sounds/EmptyClick.mp3');
 
         switch(value){
@@ -252,7 +255,9 @@
                 break;
             case "7": shotgun.play();
                 break;
-            case "8": assaultRifle.play();
+            case "8": dblShotgun.play();
+                break;
+            case "9": assaultRifle.play();
                 break;
             case "20": empty.play();
                 break;
@@ -268,6 +273,7 @@
         let smg1Reload = new Audio('./Assets/Sounds/SMG 1/FINAL SMG 1 reload.mp3');
         let smg2Reload = new Audio('./Assets/Sounds/SMG 2/FINAL SMG 2 reload.mp3');
         let shotgunReload = new Audio('./Assets/Sounds/Shotgun 1/FINAL Shotgun 1 Reload.mp3');
+        let dblShotgunReload = new Audio('./Assets/Sounds/Double Shotgun/FINAL Double Shotgun Reload.mp3');
 
         switch(value){
             case "0": pistolReload.play();
@@ -286,7 +292,10 @@
                 break;
             case "7": shotgunReload.play();
                 break;
-            case "8": assaultRifleReload.play();
+            case "8": dblShotgunReload.play();
+                break;
+            case "9": assaultRifleReload.play();
+                break;
         }
     }
 </script>
