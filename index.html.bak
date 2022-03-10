@@ -65,14 +65,12 @@
                     </select>
                 </div>
             </div>
-			<div class="col-4 offset-1 col-sm-6 offset-sm-6" id="primaryMagCount">
+			<div class="col-4 offset-1 col-sm-5 offset-sm-7">
 				<div class="row">
-                    <div class="input-group">
-                        <p style="color: white; width: 110px">Mag. Count</p>
-					    <button class="btn btn-light btn-sm" id="btnAddMag" onclick="IncreaseMagCapacity(0)"><i class="fa fa-plus"></i></button>
-					    <input type="number" id="txtPrimaryMagCapacity" disabled value="1" min="0" max="12">
-					    <button class="btn btn-light btn-sm" id="btnSubtractMag" onclick="DecreaseMagCapacity(0)"><i class="fa fa-minus"></i></button>
-                    </div>
+					<p style="color: white; width: 110px">Mag. Count</p>
+					<button class="btn btn-light btn-sm" id="btnAddMag" onclick="IncreaseMagCapacity(0)"><i class="fa fa-plus"></i></button>
+					<input type="number" id="txtPrimaryMagCapacity" disabled value="1" min="0" max="12">
+					<button class="btn btn-light btn-sm" id="btnSubtractMag" onclick="DecreaseMagCapacity(0)"><i class="fa fa-minus"></i></button>
 				</div>
 			</div>
         </div>
@@ -128,14 +126,12 @@
                     </select>
                 </div>
             </div>
-			<div class="col-4 offset-1 col-sm-6 offset-sm-6" id="secondaryMagCount">
+			<div class="col-4 offset-1 col-sm-5 offset-sm-7">
 				<div class="row">
-                    <div class="input-group">
-                        <p style="color: white; width: 110px">Mag. Count</p>
-					    <button class="btn btn-light btn-sm" id="btnAddMag" onclick="IncreaseMagCapacity(1)"><i class="fa fa-plus"></i></button>
-					    <input type="number" id="txtSecondaryMagCapacity" disabled value="1" min="0" max="12">
-					    <button class="btn btn-light btn-sm" id="btnSubtractMag" onclick="DecreaseMagCapacity(1)"><i class="fa fa-minus"></i></button>
-                    </div>
+					<p style="color: white; width: 110px">Mag. Count</p>
+					<button class="btn btn-light btn-sm" id="btnAddMag" onclick="IncreaseMagCapacity(1)"><i class="fa fa-plus"></i></button>
+					<input type="number" id="txtSecondaryMagCapacity" disabled value="1" min="0" max="12">
+					<button class="btn btn-light btn-sm" id="btnSubtractMag" onclick="DecreaseMagCapacity(1)"><i class="fa fa-minus"></i></button>
 				</div>
 			</div>
         </div>

@@ -40,8 +40,8 @@ body {
 	text-align: center;
 	}
 	
-	#primaryMagCount, #secondaryMagCount {
-		padding-left: 120px;
+	#primaryMagCount {
+		padding-left: 60px;
 	}
 }
 
